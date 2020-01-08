@@ -33,8 +33,9 @@ public class CountExample {
                     semaphore.release();
                 } catch (Exception e) {
                     log.error("count error", e);
+                }finally {
+                    countDownLatch.countDown();
                 }
-                countDownLatch.countDown();
             });
         }
         countDownLatch.await();
