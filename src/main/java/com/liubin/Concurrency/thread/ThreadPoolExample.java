@@ -22,7 +22,7 @@ public class ThreadPoolExample {
 
     //固定大小的线程池
     private static void newFixedThreadPool() {
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
         for (int i = 0; i < 10; i++) {
             executorService.execute(new MyRunnable("newFixedThreadPool-task-" + i));
         }
@@ -48,9 +48,9 @@ public class ThreadPoolExample {
     }
 
     public static void main(String[] args) {
-        newCachedThreadPool();
+//        newCachedThreadPool();
         newFixedThreadPool();
-        newSingleThreadExecutor();
-        newScheduledThreadPool();
+//        newSingleThreadExecutor();
+//        newScheduledThreadPool();
     }
 }

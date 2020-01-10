@@ -1,5 +1,7 @@
 package com.liubin.Concurrency.thread;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDateTime;
 
 /**
@@ -7,6 +9,7 @@ import java.time.LocalDateTime;
  * @author liubin
  * @date 19/12/20 15:01 
  */
+@Slf4j
 public class MyRunnable implements Runnable {
 
     private String name;
@@ -18,7 +21,7 @@ public class MyRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(LocalDateTime.now().toString()+"\t"+this.name + " is running");
+            log.info("{} is running", this.name);
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
