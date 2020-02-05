@@ -1,0 +1,19 @@
+cd /d D:\kafka
+# 启动zookeeper
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+# 启动kafka
+bin\windows\kafka-server-start.bat config\server.properties
+
+# 创建主题 topic=demo
+bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic liubintest
+# 查看创建的主题
+bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+# 启动生产者producer
+bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic demo
+# 启动消费者customer
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic demo --from-beginning
+
+
+
+
+
