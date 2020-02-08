@@ -19,11 +19,11 @@ public class ObjectOverflow {
 
 
     static {
-        log.info("static block");
+        log.info("staticProxy block");
     }
 
     static void method() {
-        log.info("static method");
+        log.info("staticProxy method");
     }
 
     //内部类

@@ -1,6 +1,7 @@
 cd /d D:\kafka
 # 启动zookeeper
 bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+bin\windows\zookeeper-shellt.bat
 # 启动kafka
 bin\windows\kafka-server-start.bat config\server.properties
 
@@ -12,8 +13,10 @@ bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic demo
 # 启动消费者customer
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic demo --from-beginning
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic simple --from-beginning
 
 
+bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 5 --topic liubintest
 
 
 

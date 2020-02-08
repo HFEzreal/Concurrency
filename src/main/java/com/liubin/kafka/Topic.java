@@ -7,5 +7,5 @@ package com.liubin.kafka;
  */
 public interface Topic {
 
-    String SIMPLE = "simple";
+    String SIMPLE = "liubintest";
 }
