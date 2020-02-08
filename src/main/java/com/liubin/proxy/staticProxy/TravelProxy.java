@@ -22,4 +22,9 @@ public class TravelProxy implements Travel {
         travel.travel();
         log.info("旅行总结工作");
     }
+
+    @Override
+    public String hike() {
+        return null;
+    }
 }

@@ -22,8 +22,8 @@ public class JDKDynamicProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         log.info("旅行准备工作");
-        method.invoke(object, args);
+        Object result = method.invoke(object, args);
         log.info("旅行总结工作");
-        return null;
+        return result;
     }
 }

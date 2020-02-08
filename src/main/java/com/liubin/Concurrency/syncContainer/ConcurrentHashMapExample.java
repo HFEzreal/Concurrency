@@ -47,7 +47,7 @@ public class ConcurrentHashMapExample {
         log.info("map size:{}", map.size());
         log.info("map2 size:{}", map2.size());
         for(Integer index:map.keySet()){
-            System.out.println(index);
+            log.info("",index);
         }
     }
 

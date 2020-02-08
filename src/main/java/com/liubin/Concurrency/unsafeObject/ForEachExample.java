@@ -47,7 +47,7 @@ public class ForEachExample {
         Iterator<Integer> it = list.iterator();
         while (it.hasNext()) {
             int i = it.next();
-            System.out.println(i);
+            log.info(i+"");
             it.remove();
         }
         log.info("" + list.size());

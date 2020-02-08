@@ -1,10 +1,13 @@
 package com.liubin.Concurrency.unsafeObject;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * javac Decompiler1.java
  * javap -p -v Decompiler1
  * java Decompiler1
  */
+@Slf4j
 public class Decompiler1 {
 
     public static void main(String[] args) {
@@ -12,6 +15,6 @@ public class Decompiler1 {
         for (int i = 0; i < 10; i++) {
             str += "1";
         }
-        System.out.println("String length:" + str.length());
+        log.info("String length:" + str.length());
     }
 }

@@ -3,15 +3,16 @@ package com.liubin.Concurrency.publish;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @description 对象溢出
  * @author liubin
- * @date 19/12/24 16:08 
+ * @description 对象溢出
+ * @date 19/12/24 16:08
  */
 @Slf4j
 public class ObjectOverflow {
 
     private String test;
-    private ObjectOverflow(){
+
+    private ObjectOverflow() {
         new InnerClass();//构造函数尚未执行完，对象没有正确的发布
         this.test = "123";
         log.info("constructor method");
@@ -27,8 +28,8 @@ public class ObjectOverflow {
     }
 
     //内部类
-    private class InnerClass{
-        private InnerClass(){
+    private class InnerClass {
+        private InnerClass() {
             log.info(ObjectOverflow.this.test);//这里拿到的值有可能不是正确的对象值
         }
     }
@@ -41,7 +42,7 @@ public class ObjectOverflow {
         Integer i3 = 127;
         Integer i4 = 127;
 
-        System.out.println(i1==i2);
-        System.out.println(i3==i4);
+        System.out.println(i1 == i2);
+        System.out.println(i3 == i4);
     }
 }
