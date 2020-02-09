@@ -2,10 +2,8 @@ package com.liubin.proxy;
 
 import com.liubin.proxy.dynamicProxy.CglibProxyInterceptor;
 import com.liubin.proxy.dynamicProxy.JDKDynamicProxy;
-import com.liubin.proxy.dynamicProxy.WriteJDKDynamicProxy;
 import com.liubin.proxy.staticProxy.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 
 import java.lang.reflect.InvocationHandler;

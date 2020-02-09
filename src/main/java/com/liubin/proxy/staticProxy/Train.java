@@ -15,8 +15,4 @@ public class Train implements Travel {
         log.info("坐火车旅行");
     }
 
-    @Override
-    public String hike() {
-        return null;
-    }
 }

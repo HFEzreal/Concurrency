@@ -18,13 +18,10 @@ public class TravelProxy implements Travel {
 
     @Override
     public void travel() {
+
         log.info("旅行准备工作");
         travel.travel();
         log.info("旅行总结工作");
     }
 
-    @Override
-    public String hike() {
-        return null;
-    }
 }

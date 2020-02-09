@@ -1,4 +1,4 @@
-package com.liubin.proxy.dynamicProxy;
+package com.liubin.proxy.dynamicProxy.handWrite;
 
 import com.liubin.proxy.staticProxy.Train;
 import com.liubin.proxy.staticProxy.Travel;
@@ -20,43 +20,47 @@ import java.lang.reflect.Method;
 public class WriteJDKDynamicProxy {
 
     public static void main(String[] args) throws Exception {
-        Travel travel = (Travel)newProxyInstance(Travel.class,new Train());
+        Travel travel = (Travel) newProxyInstance(Travel.class, new StrengHandle(new Train()));
         travel.travel();
     }
 
-    public static Object newProxyInstance(Class inface,Object o) throws Exception {
+    public static Object newProxyInstance(Class inface, MyInvocationHandler handler) throws Exception {
         String rn = "\r\n";
         String methodStr = "";
         for (Method method : inface.getMethods()) {
-            String methodName = method.getReturnType().getName();
-            methodStr += "    @Override" + rn +
-                    "    public " + methodName + " " + method.getName() + "() {" + rn +
-                    "       log.info(\" 旅行准备工作 \");" + rn;
-            if (methodName.equals("void")) {
-                methodStr += "       travel." + method.getName() + "();" + rn +
-                        "       log.info(\" 旅行总结工作 \");" + rn +
-                        "    }" + rn;
-            } else {
-                methodStr += "       " + methodName + " object = travel." + method.getName() + "();" + rn +
-                        "       log.info(\" 旅行总结工作 \");" + rn +
-                        "       return object;" + rn +
-                        "    }" + rn;
+            String methodName = method.getName();
+            String parameterTypes = "";
+            for (Class cls : method.getParameterTypes()) {
+                parameterTypes += "," + cls.getName() + ".class";
             }
-
+            methodStr += "    @Override" + rn +
+                    "    public " + method.getReturnType().getName() + " " + methodName + "() {" + rn +
+                    "       Object o = null;" + rn +
+                    "    try {" + rn +
+                    "       Method mh = " + inface.getName() + ".class.getMethod(\"" + methodName + "\"" + parameterTypes +
+                    ");" + rn +
+                    "       o = h.invoke(this,mh,null);" + rn +
+                    "   }catch(Exception e){" + rn +
+                    "        }" + rn;
+            if (!"void".equals(method.getReturnType().getName())) {
+                methodStr += "    return o;" + rn;
+            }
+            methodStr += "   }" + rn;
         }
         String str =
-                "package com.liubin.proxy.dynamicProxy;" + rn +
+                "package com.liubin.proxy.dynamicProxy.handWrite;" + rn +
                         "import lombok.extern.slf4j.Slf4j;" + rn +
+                        "import java.lang.reflect.Method;" + rn +
                         "@Slf4j" + rn +
                         "public class $Proxy0 implements " + inface.getName() + " {" + rn +
-                        "    private " + inface.getName() + " travel;" + rn +
-                        "    public $Proxy0(" + inface.getName() + " travel) {" + rn +
-                        "       this.travel = travel;" + rn +
+                        "    private MyInvocationHandler h;" + rn +
+                        "    public $Proxy0(MyInvocationHandler h) {" + rn +
+                        "       this.h = h;" + rn +
                         "    }" + rn
                         + methodStr +
                         "}";
         //生成$Proxy0.java文件
-        String filename = System.getProperty("user.dir") + "\\target\\classes\\com\\liubin\\proxy\\dynamicProxy\\$Proxy0.java";
+        String filename = System.getProperty("user.dir") + "\\target\\classes\\com\\liubin\\proxy\\dynamicProxy\\handWrite\\$Proxy0.java";
         FileOutputStream file = new FileOutputStream(filename);
         file.write(str.getBytes());
         file.flush();
@@ -74,8 +78,8 @@ public class WriteJDKDynamicProxy {
         fileManager.close();
 
         ClassLoader cl = ClassLoader.getSystemClassLoader();
-        Class c = cl.loadClass("com.liubin.proxy.dynamicProxy.$Proxy0");
-        Constructor ctr = c.getConstructor(inface);
-        return ctr.newInstance(o);
+        Class c = cl.loadClass("com.liubin.proxy.dynamicProxy.handWrite.$Proxy0");
+        Constructor ctr = c.getConstructor(MyInvocationHandler.class);
+        return ctr.newInstance(handler);
     }
 }

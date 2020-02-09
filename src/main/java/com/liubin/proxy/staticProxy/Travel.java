@@ -11,5 +11,4 @@ public interface Travel {
 
     void travel();
 
-    String hike();
 }
