@@ -1,8 +1,5 @@
 package com.liubin.Concurrency.unsafeObject;
 
-import javax.tools.JavaCompiler;
-import javax.tools.StandardJavaFileManager;
-import javax.tools.ToolProvider;
 import java.io.IOException;
 
 /**
