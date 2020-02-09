@@ -1,17 +1,14 @@
 package com.liubin.Concurrency.unsafeObject;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * @description for循环
  * @author liubin
- * @date 20/1/6 10:14 
+ * @description for循环
+ * @date 20/1/6 10:14
  */
-@Slf4j
 public class ForEachExample {
 
     private static final List<Integer> list = new ArrayList<>();
@@ -20,7 +17,7 @@ public class ForEachExample {
         for (int i = 0; i < 10; i++) {
             list.add(i);
         }
-        log.info("list init ...");
+        System.out.println("list init ...");
     }
 
 
@@ -47,10 +44,10 @@ public class ForEachExample {
         Iterator<Integer> it = list.iterator();
         while (it.hasNext()) {
             int i = it.next();
-            log.info(i+"");
+            System.out.println(i + "");
             it.remove();
         }
-        log.info("" + list.size());
+        System.out.println("" + list.size());
     }
 
 }

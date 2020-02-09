@@ -1,20 +1,22 @@
 package com.liubin.Concurrency.unsafeObject;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.tools.JavaCompiler;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
+import java.io.IOException;
 
 /**
  * javac Decompiler1.java
  * javap -p -v Decompiler1
  * java Decompiler1
  */
-@Slf4j
 public class Decompiler1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String str = "";
         for (int i = 0; i < 10; i++) {
             str += "1";
         }
-        log.info("String length:" + str.length());
+        System.out.println("String length:" + str.length());
     }
 }
