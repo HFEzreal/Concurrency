@@ -22,7 +22,6 @@ public class RejectedExecutionHandlerTest {
 //        pool.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());//直接丢弃当前任务
 //        pool.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());//丢弃队列里面最前面的任务，然后重新尝试执行任务（重复此过程）
 //        pool.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());//由调用线程处理该任务
-
         //新建10个任务，把他们放到线程中
         for(int i=0;i<10;i++){
             Runnable myrun = new MyRunnable("task-"+i);

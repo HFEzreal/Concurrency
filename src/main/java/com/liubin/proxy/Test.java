@@ -4,6 +4,7 @@ import com.liubin.proxy.dynamicProxy.CglibProxyInterceptor;
 import com.liubin.proxy.dynamicProxy.JDKDynamicProxy;
 import com.liubin.proxy.staticProxy.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 
 import java.lang.reflect.InvocationHandler;
@@ -55,7 +56,7 @@ public class Test {
 
     public static void cglibProxy() {
         //在指定目录下生成动态代理类，我们可以反编译看一下里面到底是一些什么东西
-//        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "E:\\gitcode\\liubin\\Concurrency\\src\\main\\java\\com\\liubin\\proxy");
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "E:\\gitcode\\liubin\\Concurrency\\src\\main\\java\\com\\liubin\\proxy");
 
         Enhancer enhancer = new Enhancer();
         enhancer.setCallback(new CglibProxyInterceptor());

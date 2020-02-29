@@ -15,7 +15,7 @@ import java.util.UUID;
  * @date 2020/2/5 9:18
  */
 @Slf4j
-@RestController
+//@RestController
 public class KafkaProducer {
 
     @Autowired

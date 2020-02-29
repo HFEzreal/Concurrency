@@ -14,7 +14,7 @@ import java.util.LinkedList;
  * @date 2020/2/5 9:34
  */
 @Slf4j
-@Component
+//@Component
 public class KafkaConsumer {
 
     /**

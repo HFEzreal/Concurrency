@@ -30,8 +30,8 @@ public class SeampHoreExample {
             executorService.execute(() -> {
                 try {
                     semaphore.acquire();//获取一个许可
-                    semaphore.acquire(10);//一次获取10个许可
-                    semaphore.tryAcquire();//尝试获取一个许可，成功返回true，失败返回false
+//                    semaphore.acquire(10);//一次获取10个许可
+//                    semaphore.tryAcquire();//尝试获取一个许可，成功返回true，失败返回false
                     semaphore.tryAcquire(1,TimeUnit.SECONDS);//尝试获取一个许可，如果失败继续尝试获取，直到超时时间1秒，成功返回true，失败返回false
                     Thread.sleep(100);
                     log.info("{}", index);
