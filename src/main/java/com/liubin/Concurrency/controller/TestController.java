@@ -18,4 +18,10 @@ public class TestController {
         return ThreadLocalExample.get();
     }
 
+    @RequestMapping("/hello")
+    public String hello(){
+
+        return "Hello world";
+    }
+
 }
