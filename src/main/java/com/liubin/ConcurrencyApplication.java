@@ -15,6 +15,7 @@ public class ConcurrencyApplication extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(ConcurrencyApplication.class, args);
 	}
 
