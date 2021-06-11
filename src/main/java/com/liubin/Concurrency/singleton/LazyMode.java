@@ -1,13 +1,20 @@
 package com.liubin.Concurrency.singleton;
 
+import java.io.Serializable;
+
 /**
  * @description 懒汉模式
  * @author liubin
- * @date 19/12/24 17:54 
+ * @date 19/12/24 17:54
  */
-public class LazyMode {
+public class LazyMode implements Serializable {
+
+    private String name;
+    private int code;
 
     public LazyMode() {
+        this.code = 1;
+        this.name = "懒汉";
     }
 
     private static LazyMode instance;
@@ -30,6 +37,7 @@ public class LazyMode {
     }
 
     //双重检测：线程不安全（指令重排序导致的线程不安全）
+
     /**
      * instance = new LazyMode(); JVM做了三步操作
      * memory = allocate(); 1.分配对象的内存空间
@@ -54,9 +62,14 @@ public class LazyMode {
     public static LazyMode doubleCheckAndVolatile() {
         if (volatileInstance == null) {
             synchronized (LazyMode.class) {
-                instance = new LazyMode();
+                volatileInstance = new LazyMode();
             }
         }
+        return volatileInstance;
+    }
+
+    // 防止序列化破坏单例模式
+    private Object readResolve() {
         return volatileInstance;
     }
 }

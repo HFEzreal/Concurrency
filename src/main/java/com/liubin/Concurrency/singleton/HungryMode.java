@@ -2,14 +2,17 @@ package com.liubin.Concurrency.singleton;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.Serializable;
+
 /**
  * @description 饿汉模式
  * @author liubin
- * @date 19/12/24 17:55 
+ * @date 19/12/24 17:55
  */
 @Slf4j
-public class HungryMode {
+public class HungryMode implements Serializable {
 
+    private static final long serialVersionUID = 1901252040538104793L;
     private static HungryMode instance = new HungryMode();
 
     //线程安全
@@ -32,6 +35,11 @@ public class HungryMode {
     public static void main(String[] args) {
         log.info(HungryMode.getInstance().toString());
         log.info(HungryMode.getInstanceNull().toString());
+    }
+
+    // 防止序列化破坏单例模式
+    private Object readResolve() {
+        return instance;
     }
 
 }

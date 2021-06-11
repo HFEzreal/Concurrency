@@ -1,5 +1,6 @@
 package com.liubin.Concurrency.sync;
 
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
@@ -10,7 +11,7 @@ import java.util.concurrent.Semaphore;
 /**
  * @description synchronized使用示例
  * @author liubin
- * @date 19/12/23 14:36 
+ * @date 19/12/23 14:36
  */
 @Slf4j
 public class SyncCodeExample {
@@ -54,6 +55,7 @@ public class SyncCodeExample {
 
 
     private synchronized void codeBlockSync() {
+        Maps.newHashMapWithExpectedSize(1);
         //修饰代码块：对象锁
         synchronized (this) {
             countCodeBlock++;
